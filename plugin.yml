@@ -1,0 +1,16 @@
+name: DemoVision
+main: com.mmandsc.DemoVision.DemoVision
+version: 0.1
+commands:
+    dv:
+       description: Main command for DemoVision
+       usage: /dv or /dv {arguments}
+    cases:
+       description: Cases gui
+       usage: /cases or /cases {arguments}
+    report:
+       description: Report a player!
+       usage: /report or /report {arguments}    
+    list:
+       description: Gets  a players reported list
+       usage: /list or /list {arguments}
