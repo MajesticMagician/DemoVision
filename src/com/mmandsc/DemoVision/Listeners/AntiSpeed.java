@@ -1,12 +1,10 @@
 package com.mmandsc.DemoVision.Listeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
@@ -16,7 +14,7 @@ import com.mmandsc.DemoVision.config.utils.ConfigManager;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class AntiFlight implements Listener {
+public class AntiSpeed implements Listener{
 
 	private Plugin plugin = DemoVision.getPlugin(DemoVision.class);
 
@@ -55,18 +53,10 @@ public class AntiFlight implements Listener {
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent e) {
 
-		if (e.getPlayer().isFlying()) {
-			if (!e.getPlayer().hasPermission("dv.events.flight.allow")) {
-				e.getPlayer().setFlying(false);
-				e.getPlayer()
-						.kickPlayer("TheMajesticNetwork Anti-Cheat" + ChatColor.RED + "" + " FLYING IS NOT ALLOWED");
-				for (Player p : Bukkit.getOnlinePlayers()) {
-					if (p.hasPermission("dv.events.staff.msg")) {
-						p.sendMessage("The Player " + e.getPlayer().getName() + " has been kicked for flying!");
-					}
-				}
-			}
+		if(e.getPlayer().getWalkSpeed() < 1.5){
+			e.getPlayer().kickPlayer("Speeding is not allowed!");
 		}
 
 	}
+	
 }

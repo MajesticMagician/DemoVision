@@ -12,9 +12,13 @@ import com.mmandsc.DemoVision.Listeners.AntiFlight;
 import com.mmandsc.DemoVision.Listeners.BlockBreakListener;
 import com.mmandsc.DemoVision.Listeners.ClickGui;
 import com.mmandsc.DemoVision.Listeners.ClickGuiAccepted;
+import com.mmandsc.DemoVision.Listeners.JoinListenerBan;
 import com.mmandsc.DemoVision.Listeners.JoinListenerTitle;
+import com.mmandsc.DemoVision.Listeners.KillAura;
 import com.mmandsc.DemoVision.commands.CommandDv;
+import com.mmandsc.DemoVision.commands.CommandDvBan;
 import com.mmandsc.DemoVision.commands.CommandDvCases;
+import com.mmandsc.DemoVision.commands.CommandDvUnBan;
 import com.mmandsc.DemoVision.commands.CommandList;
 import com.mmandsc.DemoVision.commands.CommandReport;
 
@@ -30,6 +34,8 @@ public class DemoVision extends JavaPlugin{
 		getLogger().info("Registering Users into the config...");
 		getLogger().info("ACTIVATING CASES MENUS");
 		getCommand("dv").setExecutor(new CommandDv());
+		getCommand("dvban").setExecutor(new CommandDvBan());
+		getCommand("dvunban").setExecutor(new CommandDvUnBan());
 		getCommand("cases").setExecutor(new CommandDvCases());
 		getCommand("report").setExecutor(new CommandReport());
 		getCommand("list").setExecutor(new CommandList());
@@ -40,6 +46,8 @@ public class DemoVision extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new ClickGui(), this);
 		getServer().getPluginManager().registerEvents(new ClickGuiAccepted(), this);
 		getServer().getPluginManager().registerEvents(new AntiFlight(), this);
+		getServer().getPluginManager().registerEvents(new JoinListenerBan(), this);
+		getServer().getPluginManager().registerEvents(new KillAura(), this);
 	}
 
 	@Override

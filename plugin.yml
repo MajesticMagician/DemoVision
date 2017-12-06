@@ -14,3 +14,9 @@ commands:
     list:
        description: Gets  a players reported list
        usage: /list or /list {arguments}
+    dvban:
+       description: Gets a players name, and bans them
+       usage: /dvban or /dvban {arguments}
+    dvunban:
+       description: Gets a players name, and unbans them
+       usage: /dvunban or /dvunban {arguments}
