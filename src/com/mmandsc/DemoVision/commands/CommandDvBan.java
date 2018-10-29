@@ -1,13 +1,12 @@
 package com.mmandsc.DemoVision.commands;
 
+import com.mmandsc.DemoVision.config.utils.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-
-import com.mmandsc.DemoVision.config.utils.ConfigManager;
 
 public class CommandDvBan implements CommandExecutor {
 

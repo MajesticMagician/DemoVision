@@ -1,10 +1,7 @@
 package com.mmandsc.DemoVision.commands;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
+import com.mmandsc.DemoVision.check.Level;
+import com.mmandsc.DemoVision.config.utils.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -15,45 +12,43 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-
 import com.mmandsc.DemoVision.DemoVision;
-import com.mmandsc.DemoVision.config.utils.ConfigManager;
+
+import java.util.Set;
 
 public class CommandReport implements CommandExecutor {
 
 	private Plugin plugin = DemoVision.getPlugin(DemoVision.class);
 
+	int a = 1;
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		Player target = Bukkit.getServer().getPlayer(args[0]);
-		ConfigurationSection cm = plugin.getConfig().getConfigurationSection(args[0]);
-		ConfigManager cm1 = new ConfigManager(target.getDisplayName());
-		if (!cm1.exists()) {
-			FileConfiguration f = cm1.getConfig();
-			f.set("name", target.getDisplayName());
-			f.set("uuid", target.getUniqueId().toString());
-			f.set("ip", target.getAddress().getAddress().toString());
-			f.set("flight", target.getAllowFlight());
-			f.set("active_potions", target.getActivePotionEffects().toString());
-			f.set("can_pickup", target.getCanPickupItems());
-			f.set("compass_target", target.getCompassTarget());
-			f.set("permissions", target.getEffectivePermissions().toString());
-			f.set("equipment", target.getEquipment().toString());
-			cm1.saveConfig();
-		}else if(cm1.exists()){
-			
-			FileConfiguration f = cm1.getConfig();
-			f.set("name", target.getDisplayName());
-			f.set("uuid", target.getUniqueId().toString());
-			f.set("ip", target.getAddress().getAddress().toString());
-			f.set("flight", target.getAllowFlight());
-			f.set("active_potions", target.getActivePotionEffects().toString());
-			f.set("can_pickup", target.getCanPickupItems());
-			f.set("compass_target", target.getCompassTarget());
-			f.set("permissions", target.getEffectivePermissions().toString());
-			f.set("equipment", target.getEquipment().toString());
-			cm1.saveConfig();
+		if (args.length == 0) {
+			sender.sendMessage("<" + ChatColor.LIGHT_PURPLE + "DV" + ChatColor.RESET + ">"
+					+ " Please type a player name after 'report'");
+		} else {
+
+			ConfigManager mcReports = new ConfigManager("/players/" + args[1] + "data");
+			FileConfiguration fmc = mcReports.getConfig();
+
+			if (args.length >= 1) {
+
+				String reportReason = "";
+
+				for (String arg : args) {
+					reportReason = reportReason + " " + arg;
+				}
+
+				if (!mcReports.getConfig().contains(args[0])) {
+					fmc.set(args[0] + " Report by " + sender.getName(), " " + reportReason);
+					mcReports.saveConfig();
+				} else {
+					sender.sendMessage("Player already submitted!");
+				}
+			}
 		}
 		return true;
 	}
+
 }

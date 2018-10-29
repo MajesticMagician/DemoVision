@@ -1,6 +1,7 @@
 package com.mmandsc.DemoVision.Listeners;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,7 +25,7 @@ public class BlockBreakListener implements Listener{
 		Location b_loc = block.getLocation();
 
 		//Check if block type is TNT
-		if (block.getType() == org.bukkit.Material.TNT) {
+		if (block.getType() == Material.TNT) {
 			//Get the users section.
 			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
 			//If the user's section is null, create a section.
@@ -103,7 +104,7 @@ public class BlockBreakListener implements Listener{
 			//If the user's section doesn't have a count attribute, make one and set it to 0.
 			if (!usersSection.contains("count")) {
 				usersSection.set("count", count);
-			} 
+			}
 			//If it does, get the value and add 1.
 			else {
 				count = usersSection.getInt("count");
@@ -117,207 +118,9 @@ public class BlockBreakListener implements Listener{
 			blockSection.set("x", b_loc.getBlockX());
 			blockSection.set("y", b_loc.getBlockY());
 			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}else if (block.getType() == org.bukkit.Material.ANVIL) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}else if (block.getType() == org.bukkit.Material.ACACIA_FENCE) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}else if (block.getType() == org.bukkit.Material.ACACIA_DOOR) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}else if (block.getType() == org.bukkit.Material.ACACIA_FENCE_GATE) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}else if (block.getType() == org.bukkit.Material.ACACIA_STAIRS) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}else if (block.getType() == org.bukkit.Material.ACTIVATOR_RAIL) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
+			blockSection.set("It_was_a_break", b_loc.getWorld().getName() + event.getPlayer().getItemInHand().toString());
 			plugin.saveConfig();
 		}
-		else if (block.getType() == org.bukkit.Material.ARMOR_STAND) {
-			//Get the users section.
-			ConfigurationSection usersSection = plugin.getConfig().getConfigurationSection("Users." + player.getUniqueId().toString());
-			//If the user's section is null, create a section.
-			if (usersSection == null) {
-				usersSection = plugin.getConfig().createSection("Users." + player.getUniqueId().toString());
-			}
-
-			int count = 0;
-			//If the user's section doesn't have a count attribute, make one and set it to 0.
-			if (!usersSection.contains("count")) {
-				usersSection.set("count", count);
-			} 
-			//If it does, get the value and add 1.
-			else {
-				count = usersSection.getInt("count");
-				count++;
-			}
-			//Set the count to the now bigger count value.
-			usersSection.set("count", count);
-			// Create a block section using the count.
-			ConfigurationSection blockSection = usersSection.createSection("Block_" + count + "");
-			//Set values
-			blockSection.set("x", b_loc.getBlockX());
-			blockSection.set("y", b_loc.getBlockY());
-			blockSection.set("z", b_loc.getBlockZ());
-			blockSection.set("It_was_a_break", b_loc.getWorld().getName());
-			plugin.saveConfig();
-		}
-
 	}
 
 
